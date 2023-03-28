@@ -20,7 +20,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Confirmar contraseña</ion-label>
-        <ion-input type="confirmPassword" formControlName="password"></ion-input>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
       </ion-item>
     </ion-list>
     <ion-row>
@@ -33,7 +33,7 @@
     </ion-row>
     <ion-row *ngIf="showError">
       <ion-col>
-        <p>Introduce un correo y contraseña válidos por favor.</p>
+        <p>Por favor, introduce un correo y contraseña válidos.</p>
       </ion-col>
     </ion-row>
   </form>

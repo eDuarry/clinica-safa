@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Form, Validators } from '@angular/forms';
+
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,9 @@ export class LoginPage implements OnInit {
   showError = false;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -25,7 +30,17 @@ export class LoginPage implements OnInit {
   login() {
     if (this.form.valid) {
       const { email, password } = this.form.getRawValue();
-      console.log(email, password);
+      if (email !== null && password !== null) { // Comprobar que email y password no son null
+      this.auth.register(email, password)
+        .then(() => {
+          this.router.navigate(['/home']);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      } else {
+        console.error("Email o password null");
+      }
       this.showError = false;
     } else {
       this.form.markAsTouched();
