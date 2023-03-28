@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clinica-safa": {
+      "hosting": {
+        "app": [
+          "clinica-safa"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clinica-safa"
+  }
+}
