@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
     if (this.form.valid) {
       const { email, password } = this.form.getRawValue();
       if (email !== null && password !== null) { // Comprobar que email y password no son null
-      this.auth.register(email, password)
+      this.auth.login(email, password)
         .then(() => {
           this.router.navigate(['/home']);
         })
