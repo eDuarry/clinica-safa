@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '@angular/fire/auth-guard'; //Para controlar los accesos a url sin iniciar sesión
+import { AuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard'; //Para controlar los accesos a url sin iniciar sesión
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   {
@@ -23,6 +25,7 @@ const routes: Routes = [
   {
     path: 'home',
     canActivate: [AuthGuard], //Controlar acceso por url sin iniciar sesión.
+    data: {authGuardPipe : redirectUnauthorizedToLogin},
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
 ];
